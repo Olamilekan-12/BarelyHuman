@@ -1,0 +1,50 @@
+<div
+  class="w-full h-screen fixed -left-[100%] top-0 bg-transparent z-[999999] rounded-tr-[10px] rounded-br-[10px]"
+  id="menuSidebar"
+>
+  <div class="w-[75%] h-full shadow-lg  bg-white" id="innerMenuSlider">
+    <div class="w-full h-[60px] border-b border-gray-200 relative flex items-center px-4">
+      <a href="{{ shop.url }}">
+        <img src="{{ 'main-logo.png' |  asset_url }}" alt="" class="w-[100px]">
+      </a>
+      <p
+        class="w-[50px] h-[50px] flex items-center justify-center absolute right-[10px] top-[50%] translate-y-[-50%] cursor-pointer hover:bg-gray-100 rounded-full"
+        id="close__menu__sidebar"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </p>
+    </div>
+    <ul class="flex flex-col gap-8 py-8 px-4 border-b border-gray-200">
+      {% for link in linklists['main-menu'].links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% endfor %}
+    </ul>
+    <ul class="flex flex-col gap-8 py-8 px-4">
+      <a href="#">Account</a>
+      <select
+        name=""
+        id=""
+        class="border-none outline-none bg-transparent text-black w-[100px] ml-[-5px] cursor-pointer"
+      >
+        <option value="GBP €">GBP €</option>
+      </select>
+      <ul class="flex items-center gap-8">
+        <a href="#">
+          <i class="fa-brands fa-facebook"></i>
+        </a>
+        <a href="#">
+          <i class="fa-brands fa-facebook"></i>
+        </a>
+        <a href="#">
+          <i class="fa-brands fa-facebook"></i>
+        </a>
+        <a href="#">
+          <i class="fa-brands fa-facebook"></i>
+        </a>
+        <a href="#">
+          <i class="fa-brands fa-facebook"></i>
+        </a>
+      </ul>
+    </ul>
+  </div>
+</div>

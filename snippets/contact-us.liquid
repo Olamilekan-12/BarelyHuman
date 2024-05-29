@@ -1,0 +1,20 @@
+{{ 'contact-us.css' | asset_url | stylesheet_tag }}
+
+<div class="contact__container">
+  <h1 class="contact__us__header">Contact Us</h1>
+  {% form 'contact' %}
+    <div class="contact__fields__container">
+      <label for="contact__name">Name</label>
+      <input type="text" class="name__field" name="contact[name]" id="contact__name" required>
+    </div>
+    <div class="contact__fields__container">
+      <label for="contact__email">Email</label>
+      <input type="email" class="name__field" name="contact[email]" id="contact__email" required>
+    </div>
+    <div class="contact__fields__container">
+      <label for="contact__message">Message</label>
+      <textarea name="contact[body]" id="contact__message" required></textarea>
+    </div>
+    <input type="submit" value="Submit Message" class="submit__message">
+  {% endform %}
+</div>

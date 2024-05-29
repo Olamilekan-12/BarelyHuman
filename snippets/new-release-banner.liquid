@@ -1,0 +1,26 @@
+{{ 'new-release-banner.css' | asset_url | stylesheet_tag }}
+
+<div class="new__release__container">
+  <div class="new__release__banner">
+    <div class="new__release__overlay">
+      <div class="new__release__content">
+        <p class="new__release__main__texts">
+          <span>New Release</span>
+          <span>Wear the quality</span>
+        </p>
+        <a href="{{ routes.all_products_collection_url }}" class="btns btns-primary">Shop Now</a>
+      </div>
+    </div>
+  </div>
+  <div class="new__release__banner second__release__banner">
+    <div class="new__release__overlay">
+      <div class="new__release__content">
+        <p class="new__release__main__texts">
+          <span>New Release</span>
+          <span>Wear the quality</span>
+        </p>
+        <a href="{{ routes.all_products_collection_url }}" class="btns btns-primary">Shop Now</a>
+      </div>
+    </div>
+  </div>
+</div>

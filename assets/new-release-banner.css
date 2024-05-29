@@ -1,0 +1,131 @@
+.new__release__container {
+  width: 100%;
+  height: auto;
+  padding: 15px;
+  min-height: 650px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.new__release__banner {
+  width: 47%;
+  height: 700px;
+  position: relative;
+  background: url("./new-release-one.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.second__release__banner {
+  background: url("./new-release-two.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.new__release__overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+}
+
+.new__release__content {
+  width: 70%;
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.new__release__main__texts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.new__release__main__texts > :nth-child(1) {
+  font-size: 24px;
+  color: white;
+  font-weight: 600;
+}
+.new__release__main__texts > :nth-child(2) {
+  font-size: 14px;
+  color: white;
+  font-weight: 600;
+}
+
+.btns {
+  width: 150px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.btns-primary {
+  background-color: white;
+  color: black;
+}
+
+.btns-secondary {
+  color: white;
+  background-color: gray;
+}
+
+@media screen and (max-width: 700px) {
+  .new__release__container {
+    width: 100%;
+    padding: 10px;
+    min-height: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .new__release__banner {
+    width: 100%;
+    height: 600px !important;
+    position: relative;
+    background: url("./new-release-one.png");
+    background-position: center;
+    background-size: cover;
+  }
+
+  .second__release__banner {
+    background: url("./new-release-two.png");
+    background-position: center;
+    background-size: cover;
+  }
+
+  .new__release__content {
+    width: 90%;
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  .new__release__main__texts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+}

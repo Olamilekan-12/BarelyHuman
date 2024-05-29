@@ -1,0 +1,349 @@
+<style>
+  .article__container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 30px 50px;
+  }
+
+  .article__title {
+    margin-bottom: 40px;
+    color: black;
+    font-size: 40px;
+  }
+
+  .article__image__container {
+    width: 100%;
+    max-height: 700px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .article__image__wrapper {
+    width: 100%;
+    max-width: 400px;
+    overflow: hidden;
+    height: 600px;
+  }
+
+  .article__image__wrapper img,
+  .article__image__wrapper svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .article__by {
+    font-size: 15px;
+  }
+
+  .article__date__time {
+    font-size: 14px;
+    color: gray;
+    width: 100%;
+  }
+
+  .article__content {
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: rgb(63, 61, 61);
+  }
+
+  .blog__type {
+    width: 100%;
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    padding: 10px;
+    display: block;
+  }
+
+  .no__comments {
+    width: 100%;
+    display: block;
+    font-size: 30px;
+    color: rgb(39, 38, 38);
+  }
+
+  .comment__form__container {
+    width: 90%;
+    height: auto;
+    padding: 10px;
+    max-width: 700px;
+    margin: 50px auto;
+  }
+
+  .form__wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .form__container {
+    width: 47%;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-top: 10px;
+  }
+
+  .form__container input {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border: 1px solid gray;
+  }
+
+  .wide__form {
+    width: 100%;
+  }
+  .wide__form .submit__comment {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+
+  .add__comment__btn {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin: 20px auto;
+  }
+
+  .form__container textarea {
+    width: 100%;
+    height: 150px;
+    border: none;
+    border: 1px solid gray;
+    outline: none;
+    padding: 10px;
+    resize: none;
+  }
+
+  .comment__section__header {
+    width: 100%;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .comment__header {
+    font-weight: bold;
+    color: black;
+  }
+
+  .comment__container__lists {
+    width: 90%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border: 1px solid gray;
+    padding: 15px;
+    max-width: 700px;
+    margin: 15px auto;
+  }
+
+  .comment__author__name {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+  }
+
+  .comment__author__time {
+    font-size: 14px;
+    color: gray;
+  }
+
+  .comment__author__content {
+    font-size: 13px;
+    color: rgb(54, 53, 53);
+    letter-spacing: 1px;
+  }
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 5px;
+    color: white;
+  }
+  .pagination a {
+    text-decoration: none;
+    background-color: black;
+    width: 100px;
+    height: 50px;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media screen and (max-width: 400px) {
+    .article__container {
+      width: 100%;
+      min-height: 100vh;
+      padding: 30px 10px;
+    }
+    #hide__mobile__one,
+    #hide__mobile__two {
+      display: none;
+    }
+
+    #mobile_show {
+      width: 100%;
+    }
+
+    .form__wrapper {
+      width: 100%;
+      display: flex;
+      align-items: start;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .form__container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-top: 10px;
+    }
+  }
+</style>
+
+<div class="article__container">
+  <p class="article__by">{{ article.author }}</p>
+  <div class="published__at__container">
+    <span class="article__date__time">
+      {{ article.published_at | date: '%Y-%m-%d' }}
+    </span>
+  </div>
+  <h2 class="article__title">{{ article.title }}</h2>
+  <div class="article__image__container">
+    <div class="w-full flex items-center justify-between h-[600px] overflow-hidden">
+      {% if article.image != blank %}
+        <img
+          src="{{ article.image |  img_url: 'large' }}"
+          alt="{{ article.image.alt }}"
+          class="w-[30%] h-full object-cover"
+          id="mobile_show"
+        >
+        <img
+          src="{{ article.image |  img_url: 'large' }}"
+          alt="{{ article.image.alt }}"
+          class="w-[30%] h-full object-cover"
+          id="hide__mobile__one"
+        >
+        <img
+          src="{{ article.image |  img_url: 'large' }}"
+          alt="{{ article.image.alt }}"
+          class="w-[30%] h-full object-cover"
+          id="hide__mobile__two"
+        >
+      {% else %}
+        {% assign placeholder__image = 'lifestyle-2' %}
+        {{ placeholder__image | placeholder_svg_tag }}
+      {% endif %}
+    </div>
+  </div>
+  <h2 class="article__title">{{ article.title }}</h2>
+  <a class="blog__type" href="{{ blog.url }}">{{ blog.title }}</a>
+  <p class="article__by">{{ article.author }}</p>
+  <div class="published__at__container">
+    <span class="article__date__time">
+      {{ article.published_at | date: '%Y-%m-%d' }}
+    </span>
+  </div>
+
+  <p class="article__content">{{ article.content }}</p>
+</div>
+
+{% if blog.comments_enabled? %}
+  <div id="comments" class="comment__container">
+    {% if article.comments_count > 0 %}
+      <div class="comment__section__header">
+        <h1 class="comment__header">Comments</h1>
+      </div>
+      {% paginate article.comments by 3 %}
+        {% for comment in article.comments %}
+          <div class="comment__container__lists">
+            <p class="comment__author__name">{{ comment.author }}</p>
+            <p class="comment__author__time">{{ comment.created_at | date }}</p>
+            <p class="comment__author__content">{{ comment.content }}</p>
+          </div>
+        {% endfor %}
+        {% if paginate.pages > 1 %}
+          <div class="pagination">
+            {% if paginate.previous %}
+              <a href="{{ paginate.previous.url }}">previous</a>
+            {% endif %}
+
+            {% for page in paginate.pages %}
+              {% if page.is_current %}
+                <span>{{ page.title }}</span>
+              {% else %}
+                <a href="{{ page.url }}">{{ page.title }}</a>
+              {% endif %}
+            {% endfor %}
+
+            {% if paginate.next %}
+              <a href="{{ paginate.next.url }}">next</a>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endpaginate %}
+
+    {% else %}
+      <p class="block text-center text-2xl">No comments available</p>
+    {% endif %}
+  </div>
+  <div class="commment__form">
+    {% form 'new_comment', article %}
+      <div class="comment__form__container">
+        <div class="form__wrapper">
+          <div class="form__container">
+            <label for="comment__author">Name</label>
+            <input type="text" id="comment__author" name="comment[author]" required>
+          </div>
+          <div class="form__container">
+            <label for="comment__email">Email</label>
+            <input type="email" id="comment__email" name="comment[email]" required>
+          </div>
+        </div>
+        <div class="form__container wide__form">
+          <label for="comment__content">Comment</label>
+          <textarea name="comment[body]" id="comment__content" required></textarea>
+        </div>
+        <div class="form__container add__comment__btn">
+          <input type="submit" class="submit__comment" value="Post Comment">
+        </div>
+      </div>
+    {% endform %}
+  </div>
+{% endif %}
+
+<h2 class="font-medium text-center">WHAT TO READ NEXT</h2>
+{% render 'Blog' %}

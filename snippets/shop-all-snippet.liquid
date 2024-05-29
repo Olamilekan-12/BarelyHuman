@@ -1,0 +1,18 @@
+{{ 'shop-all-snippet.css' | asset_url | stylesheet_tag }}
+<div class="shop__all__snippet">
+  <div class="shop_all_wrapper">
+    <div class="shop__all__banner">
+      <img src="{{'shop-all-banner.png' |  asset_url}}" alt="" class="banner__image">
+      <div class="shop__all__desc__content">
+        <span>Shop All</span>
+        <span>BH Men and Women Survival Pack</span>
+      </div>
+    </div>
+    <p class="shop__all__title"><span>Barelyhuman</span>/<span>Shop All</span></p>
+    <div class="collection__list__wrapper">
+      <div class="collection__list__container">
+        {% render 'collction-product-card' %}
+      </div>
+    </div>
+  </div>
+</div>

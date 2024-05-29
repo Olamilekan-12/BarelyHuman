@@ -1,0 +1,12 @@
+{{ 'black-friday-sales.css' | asset_url | stylesheet_tag }}
+<div class="black__friday__sales__container">
+  <div class="black__friday__overlay">
+    <div class="black__friday__content">
+      <p class="new__release__main__texts">
+        <span>Black Friday Sales</span>
+        <span>Up to 10% off on selected items</span>
+      </p>
+      <a href="{{ routes.all_products_collection_url }}" class="btns btns-primary">Shop Now</a>
+    </div>
+  </div>
+</div>

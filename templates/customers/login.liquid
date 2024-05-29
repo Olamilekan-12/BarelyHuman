@@ -1,0 +1,94 @@
+<style>
+  .login__form {
+    display: none;
+  }
+
+  .login__form.active {
+    display: flex;
+  }
+</style>
+
+<div class="w-full h-auto flex items-center justify-center login__form active p-[15px]" id="login__form">
+  <div class="w-full max-w-[500px] h-full">
+    <h2 class="text-center font-bold text-2xl mt-[50px] mb-[10px]">Login</h2>
+    <p class="text-center font-light text-sm text-gray-500 mb-[40px]">Enter your e-mail and password to login</p>
+    {% form 'customer_login' %}
+      {{ form.errors | default_errors }}
+      <div class="w-full flex flex-col gap-[10px]">
+        <div class="w-full">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            name="customer[email]"
+            class="w-full h-[50px] border border-gray-400 px-3 text-sm outline-none"
+            required
+          >
+        </div>
+
+        <div class="password">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            name="customer[password]"
+            class="w-full h-[50px] border border-gray-400 px-3 text-sm outline-none"
+            required
+          >
+        </div>
+
+        <div class="submit flex flex-col gap-2">
+          <input
+            type="submit"
+            value="Sign in"
+            class="w-full h-[50px] bg-black text-white flex items-center justify-center"
+          >
+          <p class="font-light text-sm text-gray-700">
+            Forgot password? <span id="reset" class="font-bold cursor-pointer">Reset it here.</span>
+          </p>
+          <p class="font-light text-sm text-gray-700">
+            Don't have an account? <a href="{{ routes.account_register_url }}" class="font-bold"> Register</a>
+          </p>
+        </div>
+      </div>
+    {% endform %}
+  </div>
+</div>
+<div class="w-full h-auto flex items-center justify-center hidden" id="recover__form">
+  <div class="w-full max-w-[500px] h-full">
+    <h2 class="text-center font-bold text-2xl mt-[50px] mb-[10px]">Forgot Password</h2>
+    <p class="text-center font-light text-sm text-gray-500 mb-[40px]">
+      Enter your e-mail address. We'll send you a code to reset your password
+    </p>
+    {% form 'recover_customer_password' %}
+      {{ form.errors | default_errors }}
+      <div class="w-full flex flex-col gap-[10px]">
+        <div class="w-full">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            class="w-full h-[50px] border border-gray-400 px-3 text-sm outline-none"
+            required
+          >
+        </div>
+
+        <div class="submit flex flex-col gap-2">
+          <input
+            type="submit"
+            value="Sign in"
+            class="w-full h-[50px] bg-black text-white flex items-center justify-center"
+          >
+          <p class="font-light text-sm text-gray-700">
+            Back to login <a href="{{ routes.account_login_url }}" class="font-bold"> Login</a>
+          </p>
+        </div>
+      </div>
+    {% endform %}
+  </div>
+</div>
+
+<script>
+  document.getElementById('reset').addEventListener('click', () => {
+    document.getElementById('login__form').classList.remove('active');
+    document.getElementById('recover__form').classList.remove('hidden');
+  });
+</script>

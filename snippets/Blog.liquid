@@ -1,0 +1,22 @@
+{{ 'blog.css' | asset_url | stylesheet_tag }}
+{% comment %}  <img src="{{ 'main-logo.png' | asset_url  }}" alt="Your Image"> {% endcomment %}
+
+<div class="blog__container" style="margin-top: 50px;">
+  <h2 style="text-align: center; margin-bottom: 40px; font-size : 28px;" class="title">Blog</h2>
+  <div class="blog__card__container">
+    {% paginate blogs.news.articles by 3 %}
+      {% for article in blogs.news.articles %}
+        <a href="{{ article.url }}" class="blog__card">
+          <img src="{{ article.image | img_url: 'large' }}" alt="{{ article.image.alt }}" class="blog__overlay__image">
+          <p class="blog__content">
+            <span class="article__date__time">
+              {{ article.author }} • {{ article.published_at | date: '%Y-%m-%d' }}
+            </span>
+            <span>{{ article.title | strip_html | truncate: 20, '...' }}</span>
+            <span>{{ article.content | strip_html | truncate: 100, '...' }}</span>
+          </p>
+        </a>
+      {% endfor %}
+    {% endpaginate %}
+  </div>
+</div>

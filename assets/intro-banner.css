@@ -1,0 +1,112 @@
+.intro__banner {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.979), rgba(0, 0, 0, 0.9));
+}
+
+.intro__banner__background__image {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.512), rgba(0, 0, 0, 0.7)),
+    url("./new-banner.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.intro__banner__content__container {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.intro__banner__content__container > :nth-child(1) {
+  font-size: 22px;
+  font-weight: medium;
+}
+
+.intro__banner__content__container > :nth-child(2) {
+  font-size: 14px;
+}
+
+.intro__banner__content__container > :nth-child(3) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.btns {
+  width: 150px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-radius: 10px;
+}
+
+.btns-primary {
+  background-color: white;
+  color: black;
+}
+
+.btns-secondary {
+  color: white;
+  background-color: gray;
+}
+
+.mobile__open__icon__img__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.mobile__nav__open__container {
+  display: none;
+}
+
+.mobile__side__nav {
+  display: none;
+}
+
+@media screen and (max-width: 700px) {
+  .intro__banner {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .intro__banner__content__container {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .intro__banner__content__container > :nth-child(3) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+}

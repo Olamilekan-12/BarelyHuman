@@ -1,0 +1,111 @@
+<div class="shadow-lg bg-white z-10">
+  <div class="w-full h-[50px] relative  border-b border-gray-100 mb-[20px] flex items-center  p-3">
+    <h2>Cart</h2>
+    <a
+      href="{{ routes.all_products_collection_url }}"
+      class="absolute top-[50%] translate-y-[-50%] right-[20px] cursor-pointer"
+      id="close__cart__bar"
+    >
+      Continue shopping
+    </a>
+  </div>
+  {% if cart.item_count > 0 %}
+    <div class="w-full h-full overflow-y-scroll ">
+      <form action="{{ routes.cart_url }}" method="post">
+        {% for item in cart.items %}
+          <div class="w-full h-auto p-2 flex gap-[10px]">
+            <a href="{{ item.url }}">
+              {% if item.image %}
+                <img
+                  src="{{ item.image | img_url : 'master' }}"
+                  alt="{{ item.title |  escape }}"
+                  class="w-[80px] h-[150px] md:w-[150px] h-[190px] object-cover object-center"
+                >
+              {% endif %}
+            </a>
+            <div class="flex flex-col gap-1">
+              <p class="text-[14px] font-medium">{{ item.product.title | truncatewords: 4 }}</p>
+              <span class="text-gray-600">{{ item.variant.title }}</span>
+              <p class="text-[14px] font-medium text-gray-600">{{ item.product.price | money }}</p>
+              <div class="flex items-center gap-2 w-[160px]">
+                <button
+                  type="button"
+                  class="w-[50px] h-[35px] flex items-center justify-center border border-gray-400 outline-none"
+                  onclick="decrementQuantity('{{ item.key }}')"
+                >
+                  -
+                </button>
+                <input
+                  type="number"
+                  name="updates[{{ item.key }}]"
+                  value="{{ item.quantity }}"
+                  min="1"
+                  readonly
+                  class="border-none outline-none w-[40px] h-[40px] flex items-center justify-center text-center"
+                >
+
+                <button
+                  type="button"
+                  class="w-[50px] h-[35px] flex items-center justify-center border border-gray-400 outline-none"
+                  onclick="incrementQuantity('{{ item.key }}')"
+                >
+                  +
+                </button>
+              </div>
+              <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0" class="text-sm text-gray-500"
+                >Remove</a
+              >
+            </div>
+          </div>
+        {% endfor %}
+        <div class="mt-[100px] mb-[50px]">
+          <p class="text-center text-sm ">Shipping & taxes included at checkout</p>
+          <p class="text-center text-sm ">Total Items : {{ cart.item_count }}</p>
+          <p class="text-center text-sm ">Subtotal : {{ cart.total_price | money }}</p>
+          <div class="flex flex-col md:flex-row items-center gap-2 justify-center  my-[15px]">
+            <button
+              type="submit"
+              class="w-[80%] md:w-[47%] bg-gray-800 h-[40px] text-black flex items-center justify-center rounded-3xl text-white"
+            >
+              Update Cart
+            </button>
+            <input
+              type="submit"
+              name="checkout"
+              value="Buy with Shop pay"
+              class="w-[80%] md:w-[47%] bg-black h-[40px] text-black flex items-center justify-center rounded-3xl text-white"
+            >
+          </div>
+        </div>
+      </form>
+    </div>
+  {% else %}
+    <div class="w-full h-[50vh] flex items-center justify-center">
+      <div class="w-full h-full flex flex-col gap-2 text-center items-center justify-center">
+        <p class="text-base">Cart is Empty</p>
+        <p class="text-sm">You currently don't have any product in your cart</p>
+        <a
+          href="{{ routes.all_products_collection_url  }}"
+          class="w-[150px] h-[50px] md:w-[200px] flex items-center justify-center bg-black text-white mx-auto"
+          >Start Shopping</a
+        >
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+<script>
+  function decrementQuantity(key) {
+    const input = document.querySelector(`input[name="updates[${key}]"]`);
+    const currentQuantity = parseInt(input.value);
+    if (currentQuantity > 1) {
+      input.value = currentQuantity - 1;
+    }
+  }
+
+  function incrementQuantity(key) {
+    const input = document.querySelector(`input[name="updates[${key}]"]`);
+    const currentQuantity = parseInt(input.value);
+    input.value = currentQuantity + 1;
+  }
+</script>

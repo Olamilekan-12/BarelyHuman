@@ -1,0 +1,25 @@
+<div class="w-full h-[40px] bg-gray-100">
+  <div class="w-full h-full flex items-center justify-center text-sm text-black nav-content">
+    Free 30 Days Return Policy
+  </div>
+  <div class="w-full h-full flex items-center justify-center text-sm text-black nav-content hidden">
+    Free Standard Delivery When You Spend €45
+  </div>
+  <div class="w-full h-full flex items-center justify-center text-sm text-black nav-content hidden">
+    10% Student Discount
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var navContent = document.querySelectorAll('.nav-content');
+    var currentIndex = 0;
+
+    function showNextIndex() {
+      navContent[currentIndex].classList.add('hidden');
+      currentIndex = (currentIndex + 1) % navContent.length;
+      navContent[currentIndex].classList.remove('hidden');
+    }
+    setInterval(showNextIndex, 5000);
+  });
+</script>

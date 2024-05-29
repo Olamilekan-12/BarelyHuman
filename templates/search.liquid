@@ -1,0 +1,107 @@
+<style>
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 5px;
+    color: white;
+  }
+  .pagination a {
+    text-decoration: none;
+    background-color: black;
+    width: 100px;
+    height: 50px;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search__container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+  }
+  .search__wrapper {
+    width: 100%;
+    height: auto;
+    padding: 40px;
+    display: flex !important;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    justify-content: space-evenly;
+  }
+
+  .search__result {
+    text-align: center;
+    font-size: 35px;
+    color: black;
+    margin-top: 50px;
+  }
+
+  .not__found_wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .not__found__text {
+    text-align: center;
+    font-size: 17px;
+    color: rgb(48, 46, 46);
+  }
+</style>
+<div class="search__container">
+  <h2 class="search__result">Search Result</h2>
+
+  {% paginate search.results by 6 %}
+    {% if search.performed %}
+      {% if search.results.size > 0 %}
+        <div class="search__wrapper">
+          {% for item in search.results %}
+            {% case item.object_type %}
+              {% when 'product' %}
+                {% render 'product-card', product_product: item %}
+
+              {% else %}
+
+            {% endcase %}
+          {% endfor %}
+        </div>
+
+      {% else %}
+        <div class="not__found_wrapper">
+          <p class="not__found__text">No result found for search item {{ search.terms }}. Try with different keyword</p>
+        </div>
+      {% endif %}
+    {% endif %}
+    {% if paginate.pages > 1 %}
+      <div class="pagination">
+        {% if paginate.previous %}
+          <a href="{{ paginate.previous.url }}">previous</a>
+        {% endif %}
+
+        {% for page in paginate.pages %}
+          {% if page.is_current %}
+            <span>{{ page.title }}</span>
+          {% else %}
+            <a href="{{ page.url }}">{{ page.title }}</a>
+          {% endif %}
+        {% endfor %}
+
+        {% if paginate.next %}
+          <a href="{{ paginate.next.url }}">next</a>
+        {% endif %}
+      </div>
+    {% endif %}
+  {% endpaginate %}
+</div>

@@ -1,0 +1,41 @@
+{{ 'bh-survival-pack-carousel-container.css' | asset_url | stylesheet_tag }}
+<div class="w-full h-auto min-h-[400px] mt-[40px]">
+  <div class="flex flex-col gap-2 ml-[20px] mb-[20px]">
+    <h2 class="font-bold text-2xl">BH Men Survival Pack</h2>
+    <a href="/collections/mens-survival-pack" class=" flex items-center gap-2">
+      <span>view all</span>
+      <i class="fa-solid fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bh-survival-pack-carousel-container">
+    <div class="bh__survival__pack__carousel">
+      {% assign mensCollections = collections['mens-survival-pack'] %}
+      {% if mensCollections %}
+        {% for product in mensCollections.products %}
+          <div class="bh__survival__pack__carousel__card">
+            <a href="{{ product.url }}" class="w-full h-[500px]">
+              {% if product.images.size > 0 %}
+                <img
+                  src="{{ product.images.first.src | img_url: 'medium' }}"
+                  alt="{{ product.title | escape }}"
+                  class="w-full h-full object-cover object-center"
+                  srcset="{{ product.images.first.src | img_url: 'large' }} 1200w"
+                  sizes="(max-width: 800px) 80vw, 1200px"
+                  data-image-index="0"
+                >
+              {% endif %}
+            </a>
+            <p class="font-bold text-sm mt-[10px]">{{ product.title }}</p>
+            <span class="mt-[10px]">{{ product.price | money }}</span>
+            <a
+              href="{{ product.url }}"
+              class="w-full h-[50px] flex items-center justify-center bg-black text-white font-bold  mt-[10px]"
+            >
+              Add Item
+            </a>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</div>

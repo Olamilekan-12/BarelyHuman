@@ -1,0 +1,112 @@
+<style>
+  .collection__product__card {
+    width: 23%;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .collection__product__card > :nth-child(1) {
+    width: 100%;
+    height: 420px;
+    overflow: hidden;
+  }
+  .collection__product__card > :nth-child(1) > a {
+    width: 100%;
+    height: 420px;
+    overflow: hidden;
+    position: relative;
+    text-decoration: none;
+  }
+  .collection__product__card > :nth-child(1) > a > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .collection__product__card > .product__desc {
+    width: 100%;
+    height: 170px;
+    padding: 10px 10px 0px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .collection__product__card > .product__desc > p {
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+  }
+  .collection__product__card > .product__desc > span {
+    font-size: 14px;
+    color: #979790;
+  }
+  .collection__product__card > .product__desc > :nth-child(3) {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+  }
+
+  .add__to__fave {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background-color: #f2f4f7;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .add__to__fave > i {
+    color: #606060;
+  }
+
+  @media screen and (max-width: 700px) {
+    .collection__product__card {
+      width: 100%;
+      height: 600px;
+    }
+  }
+</style>
+{% for product in collection.products %}
+  <div class="collection__product__card">
+    <div>
+      <a href="{{ product.url }}">
+        <img
+          src="{{ product.images.first.src | img_url: 'medium' }}"
+          alt="{{ product.title | escape }}"
+          class="main-image image-display"
+          srcset="            {{ product.images.first.src | img_url: 'large' }} 1200w"
+          sizes="
+            (max-width: 800px) 80vw,
+            1200px
+          "
+        >
+      </a>
+    </div>
+
+    <div class="product__desc">
+      <p>{{ product.title }}</p>
+      <span>{{ product.price | money }}</span>
+      <a
+        href="{{ product.url }}"
+        class="w-full h-[50px] flex items-center justify-center bg-black text-white font-bold  mt-[10px]"
+      >
+        Add Item
+      </a>
+    </div>
+  </div>
+{% endfor %}

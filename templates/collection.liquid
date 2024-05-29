@@ -1,0 +1,7 @@
+{% if collection.handle == 'all' %}
+  {% render 'shop-all-snippet' %}
+{% elsif collection.handle == 'mens-survival-pack' %}
+  {% render 'shop-men' %}
+{% elsif collection.handle == 'womens-survival-pack' %}
+  {% render 'shop-women' %}
+{% endif %}
